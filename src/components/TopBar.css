@@ -1,0 +1,63 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem var(--gutter);
+  background: linear-gradient(to bottom, rgb(11 11 13 / 0.85), transparent);
+  pointer-events: none;
+}
+
+.topbar > * {
+  pointer-events: auto;
+}
+
+.topbar__wordmark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  color: var(--bone);
+  line-height: 1;
+}
+
+.topbar__dot {
+  color: var(--orange);
+}
+
+.topbar__lang {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.topbar__lang-sep {
+  color: var(--bone-dim);
+  margin: 0 0.3rem;
+}
+
+.topbar__lang-btn {
+  background: none;
+  border: 0;
+  padding: 0.2rem 0.25rem;
+  cursor: pointer;
+  color: var(--bone-dim);
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: 0.08em;
+}
+
+.topbar__lang-btn[aria-pressed='true'] {
+  color: var(--orange);
+}
+
+.topbar__lang-btn:hover {
+  color: var(--bone);
+}

@@ -1,0 +1,39 @@
+.footer {
+  border-top: 1px solid var(--ink-2);
+  padding: clamp(3rem, 8vh, 5rem) var(--gutter) 2rem;
+  overflow: clip;
+}
+
+.footer__wordmark {
+  margin: 0;
+  font-weight: 900;
+  font-size: clamp(5rem, 18vw, 16rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink-2);
+  user-select: none;
+}
+
+@supports not (-webkit-text-stroke: 1px white) {
+  .footer__wordmark {
+    color: var(--ink-2);
+  }
+}
+
+.footer__dot {
+  color: var(--orange);
+  -webkit-text-stroke: 0;
+}
+
+.footer__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+}
+
+.footer__tagline {
+  color: var(--orange);
+}

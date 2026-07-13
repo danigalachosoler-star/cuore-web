@@ -1,0 +1,20 @@
+:root {
+  /* paleta cuore. */
+  --ink: #0b0b0d;
+  --ink-2: #131317;
+  --bone: #e9e5d9;
+  --bone-dim: #9a968c;
+  --orange: #ee5a1c;
+  --red: #ce332c;
+
+  /* tipografía */
+  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+
+  /* escala */
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --hud-size: 0.6875rem; /* 11px */
+
+  /* movimiento */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

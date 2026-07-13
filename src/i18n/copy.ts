@@ -1,0 +1,173 @@
+export type Lang = 'es' | 'en'
+
+export const SIZES = ['S', 'M', 'L', 'XL'] as const
+export type Size = (typeof SIZES)[number]
+
+export const copy = {
+  es: {
+    langLabel: 'Cambiar idioma',
+    skipToContent: 'Saltar al contenido',
+    hero: {
+      eyebrow: 'Drop 04 — Edición corta',
+      titleLine1: 'La noche',
+      titleLine2: 'es nuestra',
+      sub: 'Camisetas hechas en cantidades cortas. Para los que ruedan cuando la ciudad duerme.',
+      ctaDrop: 'Ver el Drop 04',
+      ctaList: 'Entrar en la lista',
+      alt: 'Camiseta blanca cuore. de pie junto a una Yamaha MT-09, de noche en una gasolinera',
+      scroll: 'Desliza',
+    },
+    hud: {
+      station: '23:47 · STN-04',
+      speed: '0 KM/H',
+      live: 'En vivo',
+      sec: {
+        hero: 'STN-04',
+        drop04: 'DROP-04',
+        lookbook: 'LOOKBOOK',
+        manifiesto: 'MANIFIESTO',
+        lista: 'LA LISTA',
+      },
+    },
+    marquee: ['La noche es nuestra', 'Drop 04', 'Edición corta'],
+    drop: {
+      label: 'Drop 04',
+      name: 'Camiseta Drop 04',
+      alts: {
+        'tee-close': 'Detalle de la camiseta cuore. en azul marino con logo en el pecho',
+        'navy-sit': 'Camiseta azul marino cuore. sentado en el capó del coche',
+        'ride-front': 'Camiseta blanca cuore. subido a la Yamaha MT-09',
+      } as Record<string, string>,
+      viewLabel: 'Vista',
+      specs: [
+        ['Tejido', '100% algodón peinado · 220 gsm'],
+        ['Corte', 'Boxy regular'],
+        ['Colores', 'Negro / Blanco / Marino'],
+      ],
+      price: '35 €',
+      sizeLabel: 'Talla',
+      notify: 'Notificar',
+      notifyHint: 'Sin pago ahora: te avisamos cuando salga.',
+    },
+    lookbook: {
+      label: 'Lookbook',
+      alts: {
+        'ride-front': 'Camiseta blanca cuore. subido a la Yamaha MT-09, de frente',
+        'navy-bmw': 'Camiseta azul marino cuore. delante de un BMW rojo en la gasolinera',
+        'bmw-front': 'Frontal de un BMW E36 rojo bajo la marquesina de la gasolinera',
+        'ride-blur': 'Camiseta blanca cuore. sobre la moto con luces en movimiento',
+        mt09: 'Yamaha MT-09 aparcada de noche frente a la gasolinera',
+        'navy-sit': 'Camiseta azul marino cuore. sentado en el capó, primer plano',
+        'ride-red': 'Camiseta blanca cuore. con pasamontañas sobre la moto, luces rojas',
+        'bmw-side': 'BMW E36 rojo de perfil en la explanada de la gasolinera',
+        'ride-window': 'Camiseta blanca cuore. con pasamontañas junto a la cristalera',
+      } as Record<string, string>,
+    },
+    manifesto: {
+      label: 'Manifiesto',
+      text: 'Cuore. empezó pequeño: un puñado de camisetas que pasaban de mano en mano entre los que salían de noche. Sin prisa, sin ruido. El Drop 04 es donde cambia el tono — más piezas, más ambición, la misma calle.',
+    },
+    list: {
+      title: 'Entra en la lista',
+      sub: 'Avisamos del Drop 04 antes que a nadie.',
+      emailLabel: 'Email',
+      emailPlaceholder: 'tu@email.com',
+      sizeLabel: 'Talla',
+      sizePlaceholder: 'Elige talla',
+      consent: 'Doy mi consentimiento para recibir avisos de cuore. por email (RGPD).',
+      privacy: 'Usamos tu email solo para avisarte del drop. Sin spam; baja cuando quieras.',
+      submit: 'Entrar en la lista',
+      sending: 'Enviando…',
+      ok: 'Estás dentro. Te avisamos antes que a nadie.',
+      error: 'Algo ha fallado. Prueba otra vez.',
+    },
+    footer: {
+      tagline: 'La noche es nuestra.',
+      rights: '© 2026 cuore. — Todos los derechos reservados',
+    },
+  },
+  en: {
+    langLabel: 'Switch language',
+    skipToContent: 'Skip to content',
+    hero: {
+      eyebrow: 'Drop 04 — Limited run',
+      titleLine1: 'The night',
+      titleLine2: 'is ours',
+      sub: 'Tees made in small numbers. For the ones who ride while the city sleeps.',
+      ctaDrop: 'See Drop 04',
+      ctaList: 'Join the list',
+      alt: 'White cuore. tee standing next to a Yamaha MT-09 at a gas station at night',
+      scroll: 'Scroll',
+    },
+    hud: {
+      station: '23:47 · STN-04',
+      speed: '0 KM/H',
+      live: 'Live',
+      sec: {
+        hero: 'STN-04',
+        drop04: 'DROP-04',
+        lookbook: 'LOOKBOOK',
+        manifiesto: 'MANIFESTO',
+        lista: 'THE LIST',
+      },
+    },
+    marquee: ['The night is ours', 'Drop 04', 'Limited run'],
+    drop: {
+      label: 'Drop 04',
+      name: 'Drop 04 Tee',
+      alts: {
+        'tee-close': 'Close-up of the navy cuore. tee with chest logo',
+        'navy-sit': 'Navy cuore. tee sitting on the car hood',
+        'ride-front': 'White cuore. tee on the Yamaha MT-09',
+      } as Record<string, string>,
+      viewLabel: 'View',
+      specs: [
+        ['Fabric', '100% combed cotton · 220 gsm'],
+        ['Fit', 'Boxy regular'],
+        ['Colorways', 'Black / White / Navy'],
+      ],
+      price: '€35',
+      sizeLabel: 'Size',
+      notify: 'Notify me',
+      notifyHint: 'No payment now: we ping you when it lands.',
+    },
+    lookbook: {
+      label: 'Lookbook',
+      alts: {
+        'ride-front': 'White cuore. tee on the Yamaha MT-09, facing the camera',
+        'navy-bmw': 'Navy cuore. tee in front of a red BMW at the gas station',
+        'bmw-front': 'Front of a red BMW E36 under the gas station canopy',
+        'ride-blur': 'White cuore. tee on the bike with motion-blurred lights',
+        mt09: 'Yamaha MT-09 parked at night in front of the gas station',
+        'navy-sit': 'Navy cuore. tee sitting on the hood, close-up',
+        'ride-red': 'White cuore. tee in a balaclava on the bike, red light streaks',
+        'bmw-side': 'Red BMW E36 side view on the gas station forecourt',
+        'ride-window': 'White cuore. tee in a balaclava next to the station window',
+      } as Record<string, string>,
+    },
+    manifesto: {
+      label: 'Manifesto',
+      text: 'Cuore. started small: a handful of tees passed hand to hand between the ones who went out at night. No rush, no noise. Drop 04 is where the tone shifts — more pieces, more ambition, same street.',
+    },
+    list: {
+      title: 'Get on the list',
+      sub: 'You hear about Drop 04 first.',
+      emailLabel: 'Email',
+      emailPlaceholder: 'you@email.com',
+      sizeLabel: 'Size',
+      sizePlaceholder: 'Pick a size',
+      consent: 'I consent to receive cuore. drop alerts by email (GDPR).',
+      privacy: 'We only use your email to tell you about the drop. No spam; unsubscribe anytime.',
+      submit: 'Join the list',
+      sending: 'Sending…',
+      ok: "You're in. You hear about it first.",
+      error: 'Something went wrong. Try again.',
+    },
+    footer: {
+      tagline: 'The night is ours.',
+      rights: '© 2026 cuore. — All rights reserved',
+    },
+  },
+} as const
+
+export type Copy = (typeof copy)[Lang]

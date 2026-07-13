@@ -1,0 +1,73 @@
+.hudframe {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+}
+
+.hudframe__corner {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--bone-dim);
+  opacity: 0.55;
+}
+
+.hudframe__corner--tl {
+  top: 0.7rem;
+  left: 0.7rem;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.hudframe__corner--tr {
+  top: 0.7rem;
+  right: 0.7rem;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.hudframe__corner--bl {
+  bottom: 0.7rem;
+  left: 0.7rem;
+  border-right: 0;
+  border-top: 0;
+}
+
+.hudframe__corner--br {
+  bottom: 0.7rem;
+  right: 0.7rem;
+  border-left: 0;
+  border-top: 0;
+}
+
+.hudframe__waypoint,
+.hudframe__speed {
+  position: absolute;
+  bottom: 1rem;
+  background: rgb(11 11 13 / 0.6);
+  backdrop-filter: blur(4px);
+  padding: 0.3rem 0.6rem;
+}
+
+.hudframe__waypoint {
+  left: 2rem;
+  color: var(--orange);
+}
+
+.hudframe__speed {
+  right: 2rem;
+  min-width: 6.5em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .hudframe__waypoint {
+    display: none;
+  }
+
+  .hudframe__speed {
+    right: 1.4rem;
+  }
+}

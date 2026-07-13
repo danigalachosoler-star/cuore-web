@@ -1,0 +1,121 @@
+.lookbook {
+  position: relative;
+  padding: clamp(3rem, 8vh, 6rem) var(--gutter);
+}
+
+.lookbook__label {
+  color: var(--orange);
+  margin: 0 0 2.5rem;
+}
+
+.lookbook__odometer {
+  position: absolute;
+  top: clamp(3rem, 8vh, 6rem);
+  right: var(--gutter);
+  color: var(--bone);
+  font-variant-numeric: tabular-nums;
+  display: none;
+}
+
+/* ——— desktop: travelling horizontal pinned ——— */
+@media (min-width: 900px) {
+  .lookbook {
+    height: 100svh;
+    overflow: clip;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5.5rem;
+    padding-bottom: 0;
+  }
+
+  .lookbook__label {
+    position: absolute;
+    top: 5.5rem;
+    left: var(--gutter);
+    margin: 0;
+  }
+
+  .lookbook__odometer {
+    display: block;
+    top: 5.5rem;
+  }
+
+  .lookbook__track {
+    display: flex;
+    align-items: center;
+    gap: clamp(3rem, 5vw, 6rem);
+    width: max-content;
+    padding-right: 14vw;
+    will-change: transform;
+  }
+
+  .lookbook__item {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  /* ritmo de tamaños y alturas: las fotos pasan como cosas al borde de la vía */
+  .lookbook__item:nth-child(3n + 1) .lookbook__frame {
+    height: 62vh;
+    aspect-ratio: 3 / 4;
+  }
+
+  .lookbook__item:nth-child(3n + 2) .lookbook__frame {
+    height: 46vh;
+    aspect-ratio: 4 / 3;
+  }
+
+  .lookbook__item:nth-child(3n) .lookbook__frame {
+    height: 54vh;
+    aspect-ratio: 1 / 1;
+  }
+
+  .lookbook__item:nth-child(even) {
+    transform: translateY(4vh);
+  }
+
+  .lookbook__item:nth-child(odd) {
+    transform: translateY(-2vh);
+  }
+}
+
+.lookbook__frame {
+  overflow: clip;
+  background: var(--ink-2);
+}
+
+.lookbook__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lookbook__caption {
+  margin-top: 0.6rem;
+}
+
+/* ——— móvil / sin pin: columna ——— */
+@media (max-width: 899px) {
+  .lookbook__track {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .lookbook__item {
+    margin: 0;
+  }
+
+  .lookbook__item:nth-child(3n + 1) .lookbook__frame {
+    aspect-ratio: 3 / 4;
+  }
+
+  .lookbook__item:nth-child(3n + 2) .lookbook__frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .lookbook__item:nth-child(3n) .lookbook__frame {
+    aspect-ratio: 1 / 1;
+  }
+}

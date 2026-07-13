@@ -1,0 +1,197 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+::selection {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--orange);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transform: translateY(-300%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* grano de película sobre toda la página: unifica el look filmico */
+.film-grain {
+  position: fixed;
+  inset: -8%;
+  z-index: 24;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .film-grain {
+    animation: film-grain-shift 0.8s steps(4) infinite;
+  }
+}
+
+@keyframes film-grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-1.5%, 1%); }
+  50% { transform: translate(1%, -1.5%); }
+  75% { transform: translate(-0.8%, -0.8%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ——— utilidades HUD (Space Mono) ——— */
+.hud-label {
+  font-family: var(--font-mono);
+  font-size: var(--hud-size);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+}
+
+/* esquinas de corchete: marco de telemetría */
+.hud-corners {
+  position: relative;
+  padding: 0.45em 0.8em;
+}
+
+.hud-corners::before,
+.hud-corners::after {
+  content: '';
+  position: absolute;
+  width: 0.55em;
+  height: 0.55em;
+  border: 1px solid currentColor;
+  opacity: 0.7;
+}
+
+.hud-corners::before {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.hud-corners::after {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* punto "en vivo" */
+.hud-live-dot {
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: var(--orange);
+  margin-right: 0.6em;
+  vertical-align: 6%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hud-live-dot {
+    animation: hud-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes hud-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* ——— botones ——— */
+.btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.9em 1.8em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out),
+    border-color 160ms var(--ease-out);
+}
+
+.btn--primary {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.btn--primary:hover {
+  background: var(--bone);
+}
+
+.btn--ghost {
+  border-color: var(--bone-dim);
+  color: var(--bone);
+  background: transparent;
+}
+
+.btn--ghost:hover {
+  border-color: var(--bone);
+  background: rgb(233 229 217 / 0.06);
+}
