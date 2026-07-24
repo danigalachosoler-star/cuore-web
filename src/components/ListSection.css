@@ -1,23 +1,29 @@
+/* sección de fondo claro: rompe con el negro del resto y es el momento
+   protagonista. Todo el color se invierte para leerse sobre hueso. */
 .list {
-  padding: clamp(5rem, 14vh, 9rem) var(--gutter);
+  /* gris oscuro suave para textos secundarios y labels mono (~5.7:1 sobre hueso) */
+  --list-dim: color-mix(in srgb, var(--ink) 62%, var(--bone));
+  background: var(--bone);
+  color: var(--ink);
+  padding: clamp(6rem, 18vh, 11rem) var(--gutter);
 }
 
 .list__inner {
-  max-width: 44rem;
+  max-width: 42rem;
   margin: 0 auto;
-  border: 1px solid var(--ink-2);
-  padding: clamp(2rem, 5vw, 4rem);
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  padding: clamp(2.5rem, 6vw, 4.5rem);
   position: relative;
 }
 
-/* esquinas HUD del bloque de captura */
+/* esquinas HUD del bloque de captura: firma de marca, invertida a tinta */
 .list__inner::before,
 .list__inner::after {
   content: '';
   position: absolute;
   width: 1.2rem;
   height: 1.2rem;
-  border: 1px solid var(--orange);
+  border: 1px solid var(--ink);
 }
 
 .list__inner::before {
@@ -34,9 +40,17 @@
   border-top: 0;
 }
 
+/* labels mono y punto "en vivo": tinta atenuada, no hueso atenuado */
+.list .hud-label {
+  color: var(--list-dim);
+}
+
+.list .hud-live-dot {
+  background: var(--ink);
+}
+
 .list__label {
-  color: var(--bone);
-  margin: 0 0 1.2rem;
+  margin: 0 0 1.4rem;
 }
 
 .list__title {
@@ -46,11 +60,12 @@
   letter-spacing: -0.04em;
   line-height: 0.95;
   text-transform: uppercase;
+  color: var(--ink);
 }
 
 .list__sub {
-  margin: 0 0 2.4rem;
-  color: var(--bone-dim);
+  margin: 0 0 2.6rem;
+  color: var(--list-dim);
 }
 
 .list__row {
@@ -68,9 +83,10 @@
 
 .list__field input,
 .list__field select {
-  background: var(--ink-2);
-  border: 1px solid transparent;
-  color: var(--bone);
+  /* fondo claro levantado sobre la sección: se lee como campo */
+  background: color-mix(in srgb, var(--bone) 55%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  color: var(--ink);
   font-family: var(--font-mono);
   font-size: 0.95rem;
   padding: 0.85rem 1rem;
@@ -80,21 +96,23 @@
 
 .list__field select {
   min-width: 9.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239A968C'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235F5B54'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.4rem;
   cursor: pointer;
 }
 
+/* foco en tinta: alto contraste sobre hueso (el naranja no llega a 3:1 aquí) */
 .list__field input:focus-visible,
 .list__field select:focus-visible {
-  border-color: var(--orange);
-  outline: none;
+  border-color: var(--ink);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 .list__field input::placeholder {
-  color: var(--bone-dim);
+  color: var(--list-dim);
 }
 
 .list__consent {
@@ -103,7 +121,7 @@
   align-items: flex-start;
   margin-bottom: 1.8rem;
   font-size: 0.85rem;
-  color: var(--bone-dim);
+  color: var(--list-dim);
   cursor: pointer;
 }
 
@@ -111,12 +129,21 @@
   margin-top: 0.2rem;
   width: 1rem;
   height: 1rem;
-  accent-color: var(--orange);
+  accent-color: var(--ink);
   flex-shrink: 0;
 }
 
-.list__submit {
+/* CTA protagonista: sólido tinta sobre hueso, invierte a contorno en hover */
+.list .list__submit {
   width: 100%;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bone);
+}
+
+.list .list__submit:hover {
+  background: transparent;
+  color: var(--ink);
 }
 
 .list__submit:disabled {
@@ -131,8 +158,9 @@
   letter-spacing: 0.04em;
 }
 
+/* éxito: terracota oscurecido para calidez de marca cumpliendo AA (~5.9:1) */
 .list__status-ok {
-  color: var(--orange);
+  color: color-mix(in srgb, var(--orange) 60%, var(--ink));
 }
 
 .list__status-error {
@@ -142,7 +170,7 @@
 .list__privacy {
   margin: 1.2rem 0 0;
   font-size: 0.78rem;
-  color: var(--bone-dim);
+  color: var(--list-dim);
 }
 
 @media (max-width: 560px) {

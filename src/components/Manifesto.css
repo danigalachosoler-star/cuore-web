@@ -14,7 +14,7 @@
   max-width: 56rem;
   font-size: clamp(1.5rem, 3.2vw, 2.6rem);
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.38;
   letter-spacing: -0.015em;
   color: var(--bone);
   quotes: none;

@@ -51,7 +51,7 @@ export function Lookbook() {
               start: 'top top',
               end: () => `+=${distance()}`,
               pin: true,
-              scrub: 0.6,
+              scrub: 0.9,
               invalidateOnRefresh: true,
               onUpdate: (self) => {
                 if (odoRef.current) {

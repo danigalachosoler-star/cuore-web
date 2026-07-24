@@ -13,13 +13,13 @@ export function Marquee() {
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       const tween = gsap.to('.marquee__track', {
         xPercent: -50,
-        duration: 26,
+        duration: 32,
         ease: 'none',
         repeat: -1,
       })
       // la cinta acelera (o retrocede) con la velocidad real de scroll
       const unsub = onScrollVelocity((v) => {
-        tween.timeScale(gsap.utils.clamp(-4, 5, 1 + v / 700))
+        tween.timeScale(gsap.utils.clamp(-2.5, 3, 1 + v / 950))
       })
       // sin gastar frames fuera de pantalla
       const io = new IntersectionObserver(([entry]) =>

@@ -1,9 +1,10 @@
 .marquee {
   overflow: clip;
-  background: var(--orange);
+  /* terracota rebajado con tinta: la cinta sigue siendo firma pero ya no grita */
+  background: color-mix(in srgb, var(--orange) 75%, var(--ink));
   color: var(--ink);
   transform: rotate(-1.2deg) scale(1.02);
-  margin: clamp(2rem, 5vh, 4rem) -1rem;
+  margin: clamp(3rem, 7vh, 5rem) -1rem;
   user-select: none;
 }
 

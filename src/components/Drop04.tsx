@@ -6,11 +6,12 @@ import { SIZES } from '../i18n/copy'
 import './Drop04.css'
 
 /**
- * Vistas de la galería del producto. Cuando lleguen las fotos de la camiseta
- * sola (producto sin modelo): añadir el archivo a /assets, mapearlo en
- * scripts/optimize-images.mjs y sumar aquí su slug — nada más que tocar.
+ * Galería del producto con giro 3D: la camiseta rota sobre su eje Y para
+ * mostrar frente (con logo) y espalda con sensación de volumen. Las dos caras
+ * son fotos de estudio; el resto de tomas (percha, etc.) viven en el lookbook.
  */
-const DROP_SHOTS = ['tee-close', 'navy-sit', 'ride-front'] as const
+const FRONT = 'tee-front'
+const BACK = 'tee-back'
 
 function srcset(slug: string) {
   return [640, 1024, 1600, 2048].map((w) => `/img/${slug}-${w}.webp ${w}w`).join(', ')
@@ -19,8 +20,9 @@ function srcset(slug: string) {
 export function Drop04() {
   const { t } = useLang()
   const { size, setSize } = useSignup()
-  const [shot, setShot] = useState<string>(DROP_SHOTS[0])
+  const [flipped, setFlipped] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const flipRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const mm = gsap.matchMedia(sectionRef)
@@ -42,7 +44,7 @@ export function Drop04() {
               start: 'top top',
               end: '+=190%',
               pin: true,
-              scrub: 0.8,
+              scrub: 1,
             },
             defaults: { ease: 'none' },
           })
@@ -59,7 +61,7 @@ export function Drop04() {
               0.15,
             )
             .fromTo('.drop__frame img', { scale: 1.3 }, { scale: 1, duration: 1.15 }, 0.1)
-            .from('.drop__media-tag, .drop__views', { autoAlpha: 0, duration: 0.25 }, 1.0)
+            .from('.drop__media-tag, .drop__flip-btn', { autoAlpha: 0, duration: 0.25 }, 1.0)
             .from(
               '.drop__spec',
               { autoAlpha: 0, x: -34, duration: 0.3, stagger: 0.16, ease: 'power2.out' },
@@ -67,7 +69,7 @@ export function Drop04() {
             )
             .from(
               '.drop__price',
-              { scale: 2.6, autoAlpha: 0, duration: 0.45, ease: 'back.out(1.5)' },
+              { scale: 1.45, autoAlpha: 0, duration: 0.5, ease: 'power3.out' },
               1.35,
             )
             .from(
@@ -90,6 +92,21 @@ export function Drop04() {
     return () => mm.revert()
   }, [])
 
+  // giro independiente disparado por click: rota el contenedor 3D entre 0 y 180.
+  // en reduced-motion salta a la cara sin animar.
+  function toggleFlip() {
+    const next = !flipped
+    setFlipped(next)
+    const el = flipRef.current
+    if (!el) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) {
+      gsap.set(el, { rotationY: next ? 180 : 0 })
+    } else {
+      gsap.to(el, { rotationY: next ? 180 : 0, duration: 0.7, ease: 'power2.inOut' })
+    }
+  }
+
   return (
     <section ref={sectionRef} id="drop04" className="drop" aria-labelledby="drop-title">
       <p className="drop__label hud-label">
@@ -102,31 +119,42 @@ export function Drop04() {
       <div className="drop__grid">
         <div className="drop__media">
           <div className="drop__frame">
-            <img
-              key={shot}
-              src={`/img/${shot}-1600.webp`}
-              srcSet={srcset(shot)}
-              sizes="(min-width: 900px) 55vw, 92vw"
-              alt={t.drop.alts[shot]}
-              loading="lazy"
-              decoding="async"
-            />
+            <div className="drop__flip" ref={flipRef}>
+              <div className="drop__face drop__face--front" aria-hidden={flipped || undefined}>
+                <img
+                  src={`/img/${FRONT}-1600.webp`}
+                  srcSet={srcset(FRONT)}
+                  sizes="(min-width: 900px) 55vw, 92vw"
+                  alt={t.drop.alts[FRONT]}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="drop__face drop__face--back" aria-hidden={!flipped || undefined}>
+                <img
+                  src={`/img/${BACK}-1600.webp`}
+                  srcSet={srcset(BACK)}
+                  sizes="(min-width: 900px) 55vw, 92vw"
+                  alt={t.drop.alts[BACK]}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
           </div>
           <span className="drop__media-tag hud-label hud-corners">{t.hud.station}</span>
-          <div className="drop__views" role="group" aria-label={t.drop.viewLabel}>
-            <span className="hud-label">{t.drop.viewLabel}</span>
-            {DROP_SHOTS.map((s, i) => (
-              <button
-                key={s}
-                type="button"
-                className="drop__view"
-                aria-pressed={shot === s}
-                onClick={() => setShot(s)}
-              >
-                {String(i + 1).padStart(2, '0')}
-              </button>
-            ))}
-          </div>
+          <button
+            type="button"
+            className="drop__flip-btn hud-label"
+            aria-pressed={flipped}
+            aria-label={flipped ? t.drop.flipToFront : t.drop.flipToBack}
+            onClick={toggleFlip}
+          >
+            <span className="drop__flip-icon" aria-hidden="true">
+              ↻
+            </span>
+            {t.drop.flip}
+          </button>
         </div>
 
         <div className="drop__info">

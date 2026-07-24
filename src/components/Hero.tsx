@@ -41,15 +41,15 @@ export function Hero() {
         if (!motion) return
 
         const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
-        tl.from('.hero__media', { scale: 1.06, duration: 2.2, ease: 'power2.out' }, 0)
+        tl.from('.hero__media', { scale: 1.06, duration: 2.8, ease: 'power2.out' }, 0)
           .from(
             '.hero__title-line > span',
-            { yPercent: 112, duration: 1.1, stagger: 0.14 },
+            { yPercent: 112, duration: 1.4, stagger: 0.16 },
             0.25,
           )
-          .from('.hero__eyebrow', { autoAlpha: 0, y: 14, duration: 0.7 }, 0.5)
-          .from('.hero__sub, .hero__ctas', { autoAlpha: 0, y: 18, duration: 0.8, stagger: 0.1 }, 0.9)
-          .from('.hero__hud-item, .hero__scroll', { autoAlpha: 0, duration: 0.6, stagger: 0.08 }, 1.2)
+          .from('.hero__eyebrow', { autoAlpha: 0, y: 14, duration: 0.9 }, 0.55)
+          .from('.hero__sub, .hero__ctas', { autoAlpha: 0, y: 18, duration: 1, stagger: 0.12 }, 1.0)
+          .from('.hero__hud-item, .hero__scroll', { autoAlpha: 0, duration: 0.8, stagger: 0.1 }, 1.35)
 
         if (desktop) {
           // salida cinemática: el hero se queda clavado y el scroll lo despide
@@ -61,7 +61,7 @@ export function Hero() {
                 start: 'top top',
                 end: '+=85%',
                 pin: true,
-                scrub: 0.7,
+                scrub: 1,
               },
             })
             .fromTo(

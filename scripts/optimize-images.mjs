@@ -32,16 +32,29 @@ const MAP = {
   b9: null, // gesto no apto para la web pública
 }
 
+// fotos de estudio con nombre propio (sin número de serie)
+const NAMED = {
+  'camiseta-front': 'tee-front',
+  'camiseta-hanger': 'tee-hanger',
+  'camiseta-back': 'tee-back',
+}
+
 await mkdir(OUT, { recursive: true })
-const files = (await readdir(SRC)).filter((f) => /\.jpe?g$/i.test(f))
+const files = (await readdir(SRC)).filter((f) => /\.(jpe?g|png)$/i.test(f))
 
 for (const file of files) {
-  const num = file.match(/(\d+)/)?.[1]
-  if (!num) continue
-  const series = file.endsWith('.JPG') ? 'b' : 'a'
-  const key = series === 'a' ? `a${num.padStart(2, '0')}` : `b${num}`
-  const slug = MAP[key]
-  if (slug === undefined) console.warn(`sin mapear: ${file}`)
+  const base = file.replace(/\.[^.]+$/, '')
+  let slug
+  if (base in NAMED) {
+    slug = NAMED[base]
+  } else {
+    const num = file.match(/(\d+)/)?.[1]
+    if (!num) continue
+    const series = file.endsWith('.JPG') ? 'b' : 'a'
+    const key = series === 'a' ? `a${num.padStart(2, '0')}` : `b${num}`
+    slug = MAP[key]
+    if (slug === undefined) console.warn(`sin mapear: ${file}`)
+  }
   if (!slug) continue
 
   const input = sharp(path.join(SRC, file)).rotate()

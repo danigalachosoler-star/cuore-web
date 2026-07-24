@@ -10,7 +10,7 @@
   width: 1rem;
   height: 1rem;
   border: 1px solid var(--bone-dim);
-  opacity: 0.55;
+  opacity: 0.28;
 }
 
 .hudframe__corner--tl {
@@ -52,7 +52,6 @@
 
 .hudframe__waypoint {
   left: 2rem;
-  color: var(--orange);
 }
 
 .hudframe__speed {

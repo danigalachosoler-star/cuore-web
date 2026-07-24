@@ -75,7 +75,7 @@ button {
   z-index: 24;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.055;
+  opacity: 0.03;
   mix-blend-mode: overlay;
 }
 
@@ -116,7 +116,7 @@ button {
   width: 0.55em;
   height: 0.55em;
   border: 1px solid currentColor;
-  opacity: 0.7;
+  opacity: 0.45;
 }
 
 .hud-corners::before {
@@ -136,27 +136,28 @@ button {
 /* punto "en vivo" */
 .hud-live-dot {
   display: inline-block;
-  width: 0.45em;
-  height: 0.45em;
+  width: 0.34em;
+  height: 0.34em;
   border-radius: 50%;
   background: var(--orange);
+  opacity: 0.75;
   margin-right: 0.6em;
-  vertical-align: 6%;
+  vertical-align: 12%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hud-live-dot {
-    animation: hud-pulse 1.6s ease-in-out infinite;
+    animation: hud-pulse 3s ease-in-out infinite;
   }
 }
 
 @keyframes hud-pulse {
   0%,
   100% {
-    opacity: 1;
+    opacity: 0.75;
   }
   50% {
-    opacity: 0.25;
+    opacity: 0.3;
   }
 }
 
@@ -172,17 +173,20 @@ button {
   padding: 0.9em 1.8em;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out),
-    border-color 160ms var(--ease-out);
+  transition: background-color 220ms var(--ease-out), color 220ms var(--ease-out),
+    border-color 220ms var(--ease-out);
 }
 
+/* el acento vive en el contorno; el relleno se reserva para el hover */
 .btn--primary {
-  background: var(--orange);
-  color: var(--ink);
+  background: transparent;
+  border-color: var(--orange);
+  color: var(--orange);
 }
 
 .btn--primary:hover {
-  background: var(--bone);
+  background: var(--orange);
+  color: var(--ink);
 }
 
 .btn--ghost {
